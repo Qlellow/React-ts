@@ -100,12 +100,13 @@ console.log(getLength('Hello')); // 5
 const arr = ['Hello', 'World'];
 console.log(getLength(arr)); // 2
 
-function moveTo(direction: 'left' | 'right' | 'up' | 'down') {
-  console.log(`move to ${direction}`);
-}
+// 리터럴 타입
+// function moveTo(direction: 'left' | 'right' | 'up' | 'down') {
+//   console.log(`move to ${direction}`);
+// }
 
-moveTo('left'); // OK
-// moveTo('rihgt'); // ERROR
+// moveTo('left'); // OK
+// // moveTo('rihgt'); // ERROR
 
 function setGrade(grade: 1 | 2 | 3) {
   console.log(`Set grade ${grade}`);
@@ -113,3 +114,81 @@ function setGrade(grade: 1 | 2 | 3) {
 
 setGrade(1); // OK
 // setGrade(5); // ERROR
+
+// 실습
+const setUserType = (id: number, type: 'user' | 'admin') => {
+  console.log(`Set the type of [${id}] as ${type}`);
+};
+
+setUserType(1, 'user');
+setUserType(2, 'admin');
+
+// 객체 타입
+function test(arg: { id: number; name: string }) {
+  console.log(arg.id, arg.name);
+}
+const user1 = { id: 1, name: 'user1' };
+test(user1);
+test({ id: 1, name: 'user2' });
+
+// 타입 별칭
+// 원시 타입에 다른 이름을 만들기
+type Password = string;
+
+function verifyPassword(password: Password) {
+  return password.length > 7;
+}
+
+// Union타입에 다른 이름 만들기
+type Id = string | number;
+
+function printId(id: Id) {
+  console.log(`ID: ${id}`);
+}
+
+// 타입 별칭
+// type Point = {
+//   x: number;
+//   y: number;
+// };
+
+function print1(point: { x: number; y: number }) {
+  console.log(`${point.x}, ${point.y}`);
+}
+// 둘이 같음
+function print2(point: Point) {
+  console.log(`${point.x}, ${point.y}`);
+}
+
+// 인터페이스
+interface Point {
+  x: number;
+  y: number;
+}
+
+function print3(point: Point) {
+  console.log(`${point.x}, ${point.y}`);
+}
+
+// 타입 별칭과 인터페이스
+type T = { id: number; value: string };
+interface I {
+  id: number;
+  value: string;
+}
+
+const t: T = { id: 1, value: 'TYPE' };
+const i: I = { id: 2, value: 'INTERFACE' };
+
+function testType(arg: T) {
+  console.log(`FUNC TYPE ${arg.id}-${arg.value}`);
+}
+function testInterface(arg: I) {
+  console.log(`FUNC INTERFACE ${arg.id}-${arg.value}`);
+}
+
+testType(t); // OK
+testType(i); // OK. 내부 구조가 같으므로 통과
+
+testInterface(t); // OK. 내부 구조가 같으므로 통과
+testInterface(i); // OK
