@@ -99,3 +99,17 @@ const getLength = (i: string | string[]): number => {
 console.log(getLength('Hello')); // 5
 const arr = ['Hello', 'World'];
 console.log(getLength(arr)); // 2
+
+function moveTo(direction: 'left' | 'right' | 'up' | 'down') {
+  console.log(`move to ${direction}`);
+}
+
+moveTo('left'); // OK
+// moveTo('rihgt'); // ERROR
+
+function setGrade(grade: 1 | 2 | 3) {
+  console.log(`Set grade ${grade}`);
+}
+
+setGrade(1); // OK
+// setGrade(5); // ERROR
