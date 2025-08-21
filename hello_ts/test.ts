@@ -267,3 +267,18 @@ function draw(paint: Paint) {
 
 // draw({colour:'red', line: 'solid'}); // ERROR. 과잉 속성
 // TS는 선언되지 않은 속성은 에러를 발생시킴
+
+//제네릭 객체 타입(Generic Object Type)
+function middle<T>(arg: T[]): T | undefined {
+  const index = Math.floor(arg.length / 2);
+  return arg[index];
+}
+
+const numArr = [1, 2, 3];
+const result = middle(numArr); // result는 number 타입이 됨
+
+const boolArr = [true, true, false];
+const result2 = middle(boolArr); // result2는 boolean 타입이 됨
+
+console.log(result);
+console.log(result2);
