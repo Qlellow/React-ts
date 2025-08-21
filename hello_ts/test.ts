@@ -245,3 +245,25 @@ function paint({ color, width = 1, line = 'solid' }: PaintOptions) {
 }
 
 paint({ color: 'red' });
+
+// 읽기 전용 속성
+// 객체는 참조 => 원본이 변경될 수 있음
+function test2(obj: { readonly id: number; value: string }) {
+  // obj.id = 1; // ERROR
+  console.log(obj.id);
+}
+
+const obj = { id: 1, value: 'hello' };
+test2(obj);
+
+// 과잉 속성
+interface Paint {
+  color?: string;
+  line?: 'solid' | 'dotted' | 'dashed';
+}
+function draw(paint: Paint) {
+  console.log(paint.color, paint.line);
+}
+
+// draw({colour:'red', line: 'solid'}); // ERROR. 과잉 속성
+// TS는 선언되지 않은 속성은 에러를 발생시킴

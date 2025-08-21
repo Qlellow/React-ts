@@ -154,3 +154,41 @@ testType(t); // OK
 testType(i); // OK. 내부 구조가 같으므로 통과
 testInterface(t); // OK. 내부 구조가 같으므로 통과
 testInterface(i); // OK
+var okButton = {
+    id: 1,
+    text: 'OK',
+    // { } 없이 화살표 함수를 추가할 때는 마지막에 ;대신 ,를 대신 사용
+    onClick: function () { return console.log('clicked'); },
+    onDraw: function () {
+        console.log("Draw ".concat(this.text, " button"));
+    },
+};
+okButton.onClick();
+okButton.onDraw();
+// 선택적 속성
+// 속성 이름 뒤, ?를 추가
+function test1(arg) {
+    console.log(arg.id, arg.name);
+}
+test1(user1);
+test1({ id: 2 }); // OK. 'name' is optional
+// function paint(options: PaintOptions) {
+//   // Optional property는 별도의 처리 필요
+//   const width = options.width == undefined ? 1 : options.width;
+//   const line = options.line == undefined ? 'solid' : options.line;
+// }
+// 방법 2
+// Destructuring + default value
+function paint(_a) {
+    var color = _a.color, _b = _a.width, width = _b === void 0 ? 1 : _b, _c = _a.line, line = _c === void 0 ? 'solid' : _c;
+    // 별도의 처리 없이 코딩 가능
+    console.log(color, width, line);
+}
+paint({ color: 'red' });
+// 읽기 전용 속성
+function test2(obj) {
+    // obj.id = 1; // ERROR
+    console.log(obj.id);
+}
+var obj = { id: 1, value: 'hello' };
+test2(obj);
