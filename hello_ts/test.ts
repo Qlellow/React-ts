@@ -192,3 +192,56 @@ testType(i); // OK. 내부 구조가 같으므로 통과
 
 testInterface(t); // OK. 내부 구조가 같으므로 통과
 testInterface(i); // OK
+
+// 함수 추가
+type Button = {
+  id: number;
+  text: string;
+  // 다음 두 가지 표기법으로 정의 가능
+  onClick: () => void;
+  onDraw(): void;
+};
+
+const okButton: Button = {
+  id: 1,
+  text: 'OK',
+  // { } 없이 화살표 함수를 추가할 때는 마지막에 ;대신 ,를 대신 사용
+  onClick: () => console.log('clicked'),
+  onDraw() {
+    console.log(`Draw ${this.text} button`);
+  },
+};
+
+okButton.onClick();
+okButton.onDraw();
+
+// 선택적 속성
+// 속성 이름 뒤, ?를 추가
+function test1(arg: { id: number; name?: string }) {
+  console.log(arg.id, arg.name);
+}
+test1(user1);
+test1({ id: 2 }); // OK. 'name' is optional
+// 전달하지 않은 속성 -> undefined
+
+// 방법 1
+interface PaintOptions {
+  color: string;
+  width?: number;
+  line?: 'solid' | 'dotted' | 'dashed';
+}
+
+// function paint(options: PaintOptions) {
+//   // Optional property는 별도의 처리 필요
+//   const width = options.width == undefined ? 1 : options.width;
+//   const line = options.line == undefined ? 'solid' : options.line;
+// }
+
+// 방법 2
+// Destructuring + default value
+function paint({ color, width = 1, line = 'solid' }: PaintOptions) {
+  // 별도의 처리 없이 코딩 가능
+  console.log(color, width, line);
+}
+
+paint({ color: 'red' });
