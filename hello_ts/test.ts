@@ -282,3 +282,190 @@ const result2 = middle(boolArr); // result2는 boolean 타입이 됨
 
 console.log(result);
 console.log(result2);
+
+// 클래스
+const Point = class {
+  // 생성자를 통해 타입을 추론할 수 있는 경우 타입을 생략해도 된다.
+  x;
+  y;
+  constructor(x: number, y: number) {
+    this.x = x;
+    this.y = y;
+  }
+};
+// class Point {
+//   x;
+//   y;
+//   constructor(x: number, y: number) {
+//     this.x = x;
+//     this.y = y;
+//   }
+// }
+
+// 멤버 속성
+class A {
+  name: string;
+  age: number;
+  constructor(name: string, age: number) {
+    this.name = name;
+    this.age = age;
+  }
+}
+// 축약 표기법
+class B {
+  constructor(public name: string, public age: number) {}
+}
+const a = new A('a', 10);
+const b = new B('b', 20);
+
+// 멤버 함수
+// prettier-ignore
+class Button2 {
+  drawBackground() { console.log('bg') } // ES6 축약 표기법
+  drawOutline = function() { console.log('line') }
+  drawText = () => { console.log('text') }
+}
+const bu = new Button2();
+bu.drawBackground();
+bu.drawOutline();
+bu.drawText();
+
+const value = 'Hello';
+class Value {
+  value = 'world';
+  say() {
+    console.log(value);
+    console.log(this.value);
+  }
+}
+
+const v = new Value();
+v.say();
+
+// 상속
+class Parent {
+  id = 0;
+}
+
+class Child extends Parent {
+  value: number;
+  constructor(value: number) {
+    super();
+    this.value = value;
+  }
+}
+
+// 부모 클래스의 화살표 함수는 super로 접근할 수 없다.
+class Parent1 {
+  func() {
+    console.log('parent function');
+  }
+  arr = () => {
+    console.log('parent arrow function');
+  };
+}
+class Child1 extends Parent1 {
+  test() {
+    super.func();
+    // super.arr();
+  }
+}
+
+// 인터페이스
+interface ClickHandler {
+  onClick(): void;
+}
+interface ScrollHandler {
+  onScroll(): void;
+}
+
+class DrawBox implements ClickHandler, ScrollHandler {
+  onClick(): void {
+    console.log('clicked');
+  }
+  onScroll(): void {
+    console.log('scrolled');
+  }
+}
+
+// this
+class Base {
+  hello() {
+    console.log('hello');
+  }
+}
+class Derived extends Base {
+  name = 'Derived';
+  func() {
+    super.hello();
+    console.log(this.name);
+  }
+  arrow = () => {
+    super.hello();
+    console.log(this.name);
+  };
+}
+const d = new Derived();
+const obj1 = {
+  name: 'Object',
+  func: d.func,
+  arrow: d.arrow,
+};
+// 함수의 this -> 자신을 호출한 객체
+// 화살표 함수의 this -> 자신이 선언된 객체
+obj1.func(); // Object
+obj1.arrow(); // Derived
+
+// 함수의 타입
+// 타입 정의에서는 매개 변수 이름을 꼭 적어야 한다.
+function test3(arg: number): string {
+  return arg.toString();
+}
+const f = test3;
+console.log(typeof f(123));
+
+function caller(callback: (str: string) => number) {
+  callback('Hello');
+}
+
+function func(str: string): number {
+  return str.length;
+}
+
+caller(func);
+caller((str: string): number => {
+  return 0;
+});
+
+// 선택적인 매개변수
+function optional1(num?: number) {
+  console.log(num); // number | undefined
+}
+optional1(); // OK
+optional1(1); // OK
+
+function optional2(num = 0) {
+  // default value
+  console.log(num);
+}
+optional2(); // OK - 0
+optional2(2); // OK
+
+// 파라미터 구조 분해
+// 객체를 그냥 사용할 경우
+function sumObj(obj: { a: number; b: number; c: number }) {
+  console.log(obj.a + obj.b + obj.c);
+}
+
+// Destructuring
+function sum({ a, b, c }: { a: number; b: number; c: number }) {
+  console.log(a + b + c);
+}
+sum({ a: 10, b: 3, c: 9 });
+
+type ABC = { a: number; b: number; c: number };
+function sumAbc({ a, b, c }: ABC) {
+  console.log(a + b + c);
+}
+sumAbc({ a: 10, b: 3, c: 9 });
+

@@ -90,6 +90,21 @@ const makeTuple = (num1: number, num2: number): [number, number] => {
 
 const result2 = makeTuple(3, 2);
 console.log(result2); */
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 // Union 실습
 var getLength = function (i) {
     return i.length;
@@ -209,3 +224,180 @@ var boolArr = [true, true, false];
 var result2 = middle(boolArr); // result2는 boolean 타입이 됨
 console.log(result);
 console.log(result2);
+// 클래스
+var Point = /** @class */ (function () {
+    function class_1(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+    return class_1;
+}());
+// class Point {
+//   x;
+//   y;
+//   constructor(x: number, y: number) {
+//     this.x = x;
+//     this.y = y;
+//   }
+// }
+// 멤버 속성
+var A = /** @class */ (function () {
+    function A(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    return A;
+}());
+// 축약 표기법
+var B = /** @class */ (function () {
+    function B(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    return B;
+}());
+var a = new A('a', 10);
+var b = new B('b', 20);
+// 멤버 함수
+// prettier-ignore
+var Button2 = /** @class */ (function () {
+    function Button2() {
+        this.drawOutline = function () { console.log('line'); };
+        this.drawText = function () { console.log('text'); };
+    }
+    Button2.prototype.drawBackground = function () { console.log('bg'); }; // ES6 축약 표기법
+    return Button2;
+}());
+var bu = new Button2();
+bu.drawBackground();
+bu.drawOutline();
+bu.drawText();
+var value = 'Hello';
+var Value = /** @class */ (function () {
+    function Value() {
+        this.value = 'world';
+    }
+    Value.prototype.say = function () {
+        console.log(value);
+        console.log(this.value);
+    };
+    return Value;
+}());
+var v = new Value();
+v.say();
+// 상속
+var Parent = /** @class */ (function () {
+    function Parent() {
+        this.id = 0;
+    }
+    return Parent;
+}());
+var Child = /** @class */ (function (_super) {
+    __extends(Child, _super);
+    function Child(value) {
+        var _this = _super.call(this) || this;
+        _this.value = value;
+        return _this;
+    }
+    return Child;
+}(Parent));
+// 부모 클래스의 화살표 함수는 super로 접근할 수 없다.
+var Parent1 = /** @class */ (function () {
+    function Parent1() {
+        this.arr = function () {
+            console.log('parent arrow function');
+        };
+    }
+    Parent1.prototype.func = function () {
+        console.log('parent function');
+    };
+    return Parent1;
+}());
+var Child1 = /** @class */ (function (_super) {
+    __extends(Child1, _super);
+    function Child1() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Child1.prototype.test = function () {
+        _super.prototype.func.call(this);
+        // super.arr();
+    };
+    return Child1;
+}(Parent1));
+var DrawBox = /** @class */ (function () {
+    function DrawBox() {
+    }
+    DrawBox.prototype.onClick = function () {
+        console.log('clicked');
+    };
+    DrawBox.prototype.onScroll = function () {
+        console.log('scrolled');
+    };
+    return DrawBox;
+}());
+// this
+var Base = /** @class */ (function () {
+    function Base() {
+    }
+    Base.prototype.hello = function () {
+        console.log('hello');
+    };
+    return Base;
+}());
+var Derived = /** @class */ (function (_super) {
+    __extends(Derived, _super);
+    function Derived() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.name = 'Derived';
+        _this.arrow = function () {
+            _super.prototype.hello.call(_this);
+            console.log(_this.name);
+        };
+        return _this;
+    }
+    Derived.prototype.func = function () {
+        _super.prototype.hello.call(this);
+        console.log(this.name);
+    };
+    return Derived;
+}(Base));
+var d = new Derived();
+var obj1 = {
+    name: 'Object',
+    func: d.func,
+    arrow: d.arrow,
+};
+// 함수의 this -> 자신을 호출한 객체
+// 화살표 함수의 this -> 자신이 선언된 객체
+obj1.func(); // Object
+obj1.arrow(); // Derived
+// 함수의 타입
+// 타입 정의에서는 매개 변수 이름을 꼭 적어야 한다.
+function test3(arg) {
+    return arg.toString();
+}
+var f = test3;
+console.log(typeof f(123));
+function caller(callback) {
+    callback('Hello');
+}
+function func(str) {
+    return str.length;
+}
+caller(func);
+caller(function (str) {
+    return 0;
+});
+// 선택적인 매개변수
+function optional1(num) {
+    console.log(num); // number | undefined
+}
+optional1(); // OK
+optional1(1); // OK
+function optional2(num) {
+    if (num === void 0) { num = 0; }
+    // default value
+    console.log(num);
+}
+optional2(); // OK - 0
+optional2(2); // OK
