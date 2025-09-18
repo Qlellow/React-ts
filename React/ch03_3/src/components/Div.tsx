@@ -5,12 +5,15 @@ export type ReactDivProps = DetailedHTMLProps<
   HTMLAttributes<HTMLDivElement>,
   HTMLDivElement
 >
-export type DivProps = ReactDivProps & PropsWithChildren<WidthHeightProps>
+export type DivProps = ReactDivProps &
+  PropsWithChildren<WidthHeightProps> & {
+    src?: string
+  }
 
 //prettier-ignore
 export const Div:FC<DivProps> = ({
-  width, height, style:_style, ...props
+  width, height, src, style:_style, ...props
 }) => {
-  const style = {..._style, width, height}
+  const style = {..._style, width, height, backgroundImage: src && `url(${src})`}
   return <div {...props} style={style} />
 }
