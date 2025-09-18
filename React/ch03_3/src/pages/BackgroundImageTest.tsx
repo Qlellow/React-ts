@@ -2,7 +2,7 @@ import { Title, Subtitle, Div } from '../components'
 import * as D from '../data'
 
 const src = D.randomImage(3000, 1600)
-export default function CopyMe() {
+export default function BackgroundImageTest() {
   return (
     <section className="mt-4">
       <Title>ImageTest</Title>

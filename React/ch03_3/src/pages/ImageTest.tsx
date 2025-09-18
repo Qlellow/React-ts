@@ -1,6 +1,6 @@
 import { Title } from '../components'
 
-export default function CopyMe() {
+export default function ImageTest() {
   return (
     <section className="mt-4">
       <Title>Copy Me</Title>
