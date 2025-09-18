@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 @plugin 'daisyui';
 
+@theme {
+  --color-my-color: #ffff00;
+  /* text-my-color 이렇게 tailwind css 사용가능 */
+}
+
 .material-icons {
   font-family: 'Material Icons';
   display: inline-block;

@@ -5,9 +5,9 @@ import TextsTest from './pages/TextsTest'
 function App() {
   return (
     <div className="App">
-      <Tailwindcss />
-      <Color />
       <TextsTest />
+      <Color />
+      <Tailwindcss />
     </div>
   )
 }
