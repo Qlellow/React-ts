@@ -3,16 +3,12 @@ import * as D from '../data'
 import { useOrCreate } from './useOrCreate'
 
 export default function UseOrCreateTest() {
+  // prettier-ignore
   const headTexts = useOrCreate<string[]>('headText', () => [
-    'No.',
-    'NAME',
-    'JOB TITLE',
-    'EMAIL ADDRESS',
+    'No.', 'NAME', 'JOB TITLE', 'EMAIL ADDRESS',
   ])
   const users = useOrCreate('users', () => D.makeArray(100).map(D.makeRandomUser))
-  const head = useOrCreate('head', () =>
-    headTexts.map(text => <th key={text}>{text}</th>)
-  )
+  const head = useOrCreate('head', () => headTexts.map(text => <th key={text}>{text}</th>))
   const body = useOrCreate('children', () =>
     users.map((user, index) => (
       <tr key={user.uuid}>

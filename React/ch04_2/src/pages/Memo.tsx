@@ -27,7 +27,7 @@ export default function Memo() {
 
   return (
     <section className="mt-4">
-      <Title>CreateOrUseTest</Title>
+      <Title>Memo</Title>
       <div className="mt-4">
         <table className="table w-full table-zebra table-compact">
           <thead>
