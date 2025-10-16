@@ -1,10 +1,17 @@
-import { useClock } from './hooks'
-
-import Clock from './pages/Clock'
+import UseOrCreateTest from './pages/UseOrCreateTest'
+import Memo from './pages/Memo'
+import Callback from './pages/Callback'
+import HighOrderCallback from './pages/HighOrderCallback'
 
 function App() {
-  const today = useClock()
-  return <Clock today={today} />
+  return (
+    <div>
+      <HighOrderCallback />
+      <Callback />
+      <Memo />
+      <UseOrCreateTest />
+    </div>
+  )
 }
 
 export default App
