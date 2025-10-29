@@ -5,9 +5,8 @@ export type ReactInputProps = DetailedHTMLProps<
   HTMLInputElement
 >
 
-export type inputProps = ReactInputProps & {}
-
-export const Input: FC<inputProps> = ({ className: _className, ...inputProps }) => {
-  const className = ['input,', _className].join(' ')
-  return <input {...inputProps} className={className} />
+export type InputProps = ReactInputProps & {}
+export const Input: FC<InputProps> = ({ className: _className, ...props }) => {
+  const className = ['input', _className].join(' ')
+  return <input className={className} {...props} />
 }
