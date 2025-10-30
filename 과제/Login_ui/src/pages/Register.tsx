@@ -4,7 +4,11 @@ import { AxiosError } from 'axios'
 import client from '../api/client'
 import type { RegisterUserDto } from '../api/dto'
 
-export default function Register() {
+type Props = {
+  setView: (view: 'login' | 'register' | 'none') => void
+}
+
+export default function Register({ setView }: Props) {
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -20,7 +24,9 @@ export default function Register() {
       const response = await client.post<RegisterUserDto>('/auth/register', user)
       console.log(response.data)
       alert(`${user.username}님, 회원가입이 완료되었습니다! 로그인 해주세요.`)
+      setView('login')
     } catch (error) {
+      alert(`${user.username}님, 회원가입에 실패했습니다. 나중에 다시 시도해주세요.`)
       const axiosError = error as AxiosError
       console.error(axiosError)
     }

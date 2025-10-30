@@ -39,8 +39,10 @@ export default function Login({ onLogin }: Props) {
         localStorage.setItem('accessToken', responseData.data.accessToken)
         localStorage.setItem('username', username)
         onLogin(username)
+        alert(`${username}님, 환영합니다!`)
       }
     } catch (error) {
+      alert(`${username}님, 로그인에 실패했습니다. 나중에 다시 시도해주세요.`)
       const axiosError = error as AxiosError
       console.error(axiosError)
     }

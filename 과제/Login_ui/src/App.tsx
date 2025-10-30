@@ -30,7 +30,7 @@ export default function App() {
 
       <main className="flex justify-center items-start mt-24">
         {!user && view === 'login' && <Login onLogin={handleLogin} />}
-        {!user && view === 'register' && <Register />}
+        {!user && view === 'register' && <Register setView={setView} />}
         {!user && view === 'none' && (
           <div className="text-gray-400 text-lg italic">Select an option above.</div>
         )}
