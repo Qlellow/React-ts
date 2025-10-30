@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function Signup() {
+export default function Register() {
   const [form, setForm] = useState({
     username: '',
     password: '',

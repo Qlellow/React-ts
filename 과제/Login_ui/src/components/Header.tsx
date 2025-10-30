@@ -1,11 +1,11 @@
 type Props = {
   user: string | null
   onLoginClick: () => void
-  onSignupClick: () => void
+  onRegisterClick: () => void
   onLogout: () => void
 }
 
-export default function Header({ user, onLoginClick, onSignupClick, onLogout }: Props) {
+export default function Header({ user, onLoginClick, onRegisterClick, onLogout }: Props) {
   return (
     <div className="flex justify-between items-center p-4 bg-blue-600 text-white shadow-md">
       <h1 className="text-2xl font-bold">게시판</h1>
@@ -18,7 +18,7 @@ export default function Header({ user, onLoginClick, onSignupClick, onLogout }: 
               로그인
             </button>
             <button
-              onClick={onSignupClick}
+              onClick={onRegisterClick}
               className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-gray-200">
               회원가입
             </button>
