@@ -4,7 +4,7 @@ export type Response<T> = {
   data: T | null
 }
 
-export type registerUserDto = {
+export type RegisterUserDto = {
   username: string
   nickname: string
   password: string

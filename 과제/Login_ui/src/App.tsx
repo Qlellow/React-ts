@@ -14,7 +14,9 @@ export default function App() {
   }
 
   const handleLogout = () => {
-    setUser(null)
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('username')
+    setUser('')
   }
 
   return (
