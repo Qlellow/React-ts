@@ -22,7 +22,10 @@ export type LoginResponseDto = {
 }
 
 export type PostListItemDto = {
+  id: number
   title: string
+  username: string
+  view: number
 }
 
 export type PostDto = {

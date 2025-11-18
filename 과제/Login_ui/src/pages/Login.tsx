@@ -1,20 +1,3 @@
-//
-//
-
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 import { useState } from 'react'
 
 import client from '../api/client'
@@ -54,17 +37,13 @@ export default function Login({ onLogin }: Props) {
 
       <div className="space-y-5">
         <input
-          name="username"
           placeholder="아이디"
-          value={username}
           onChange={e => setUsername(e.target.value)}
           className="input input-bordered w-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
           type="password"
-          name="password"
           placeholder="비밀번호"
-          value={password}
           onChange={e => setPassword(e.target.value)}
           className="input input-bordered w-full bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />

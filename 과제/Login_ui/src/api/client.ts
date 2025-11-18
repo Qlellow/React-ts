@@ -8,7 +8,6 @@ import type {
 
 const baseURL = import.meta.env.VITE_BASE_URL
 console.log(baseURL)
-
 const client: AxiosInstance = axios.create({
   baseURL: baseURL,
   timeout: 5000, // 요청 타임아웃
@@ -26,7 +25,7 @@ client.interceptors.request.use(
       // 토큰이 있다면 헤더에 추가
       config.headers.Authorization = `Bearer ${token}`
     }
-    // config를 반환해야 요청이 계속 진행됨
+    // config를 반환해야 요청이 계속 진행됨.
     return config
   },
   (error: AxiosError) => {
@@ -43,18 +42,18 @@ client.interceptors.response.use(
   },
   (error: AxiosError) => {
     if (error.response) {
-      // http statusrk 2xx가 아닌 경우
-      // Token 만료는 서버가 보내주기로 한 status에 맞게 이곳에서 처리할 수 있다.
+      // http status가 2xx가 아닌 경우.
+      // Token 만료는 서버가 보내주기로 한 status 에 맞게 이곳에서 처리할 수 있다.
       console.error('Response Error:', error.response.data)
       switch (error.response.status) {
         case 401:
-          console.error('401 Unauthorized')
+          console.log('401 Unauthorized')
           break
         case 403:
-          console.error('403 Forbidden')
+          console.error('403 Forbidden.')
           break
         case 500:
-          console.error('500 Internal Server Error')
+          console.error('500 Internal Server Error.')
           break
         default:
           console.error(`Error ${error.response.status}: ${error.message}`)

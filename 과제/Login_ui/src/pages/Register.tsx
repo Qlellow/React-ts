@@ -5,7 +5,7 @@ import client from '../api/client'
 import type { RegisterUserDto } from '../api/dto'
 
 type Props = {
-  setView: (view: 'login' | 'register' | 'none') => void
+  setView: (view: 'login' | 'register' | 'main') => void
 }
 
 export default function Register({ setView }: Props) {

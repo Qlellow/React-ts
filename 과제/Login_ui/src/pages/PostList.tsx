@@ -1,9 +1,31 @@
-export default function PostList() {
-  const posts = [
-    { id: 1, title: '첫 번째 게시글' },
-    { id: 2, title: '두 번째 게시글' },
-    { id: 3, title: '세 번째 게시글' },
-  ]
+import { useState, useEffect } from 'react'
+import { AxiosError } from 'axios'
+
+import client from '../api/client'
+import type { Response, PostListItemDto } from '../api/dto'
+
+type PostListProps = {
+  username: string
+}
+
+export default function PostList({ username }: PostListProps) {
+  const [posts, setPosts] = useState<PostListItemDto[]>([])
+
+  useEffect(() => {
+    const sendRequest = async () => {
+      try {
+        const response = await client.get('/post')
+        const responseData = response.data as Response<{ content: PostListItemDto[] }>
+        const content = responseData.data?.content
+        if (content) setPosts(content)
+      } catch (error) {
+        const axiosError = error as AxiosError
+        console.error(axiosError)
+      }
+    }
+    if (username) sendRequest()
+    else setPosts([])
+  }, [username])
 
   return (
     <div className="bg-white w-[600px] p-6 rounded-lg shadow-lg">
@@ -12,6 +34,9 @@ export default function PostList() {
         {posts.map(p => (
           <li key={p.id} className="py-3">
             <p className="font-semibold">{p.title}</p>
+            <p className="text-sm text-gray-500">
+              작성자: {p.username} | 조회수: {p.view}
+            </p>
           </li>
         ))}
       </ul>
