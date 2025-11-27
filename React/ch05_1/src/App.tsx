@@ -1,11 +1,11 @@
-import TimeStamp from './pages/TimeStamp'
-import {ResponsiveProvider} from './contexts'
-import ResponsiveContextTest from './pages/ResponsiveContextTest'
+import ReduxClock from './pages/ReduxClock'
+import UseReducerClock from './pages/UseReducerClock'
+
 export default function App() {
   return (
-    <ResponsiveProvider>
-      <ResponsiveContextTest />
-      <TimeStamp />
-    </ResponsiveProvider>
+    <main className="p-8">
+      <UseReducerClock />
+      <ReduxClock />
+    </main>
   )
 }

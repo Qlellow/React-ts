@@ -1,9 +1,9 @@
 import {Title} from '../components'
 
-export default function CopyMe() {
+export default function UseReducerClock() {
   return (
     <section className="mt-4">
-      <Title>CopyMe</Title>
+      <Title>UseReducerClock</Title>
     </section>
   )
 }
