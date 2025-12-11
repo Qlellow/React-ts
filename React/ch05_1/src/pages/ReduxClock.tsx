@@ -7,6 +7,7 @@ export default function ReduxClock() {
   const dispatch = useDispatch()
 
   useInterval(() => dispatch({ type: 'setToday', today: new Date() }))
+
   return (
     <section className="mt-4">
       <h2 className="text-5xl font-bold text-center">ReduxClock</h2>
