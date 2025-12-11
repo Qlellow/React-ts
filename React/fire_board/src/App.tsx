@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { auth } from './firebase'; // 로컬 설정파일에서 auth 가져오기
 import { onAuthStateChanged, type User } from 'firebase/auth';
+import ResetPassword from './ResetPassword';
+import UpdatePassword from './UpdatePassword';
 
 import './App.css';
 
@@ -25,6 +27,20 @@ function App() {
     return <div>Loading...</div>; // 로딩 중
   }
 
-  return <div className="App">{!user ? <Login /> : <Board user={user} />}</div>;
+  return (
+    <div className="App">
+      {!user ? (
+        <>
+          <Login />
+          <ResetPassword />
+        </>
+      ) : (
+        <>
+          <UpdatePassword />
+          <Board user={user} />
+        </>
+      )}
+    </div>
+  );
 }
 export default App;
