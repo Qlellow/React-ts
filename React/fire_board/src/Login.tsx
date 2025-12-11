@@ -50,6 +50,7 @@ function Login() {
       />
       <button onClick={handleSignIn}>로그인</button>
       <button onClick={handleSignUp}>회원가입</button>
+      <button onClick={() => auth.signOut()}>로그아웃</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
