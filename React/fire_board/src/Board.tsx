@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { db, auth } from './firebase';
 import {
   collection,
   addDoc,
@@ -12,6 +11,9 @@ import {
   Timestamp, // createdAt 필드의 타입
 } from 'firebase/firestore';
 import { type User } from 'firebase/auth';
+import { useTranslation } from 'react-i18next';
+
+import { db, auth } from './firebase';
 
 interface Post {
   id: string;
@@ -25,6 +27,7 @@ interface BoardProps {
 }
 
 const Board = ({ user }: BoardProps) => {
+  const { t } = useTranslation();
   const [posts, setPosts] = useState<Post[]>([]);
   const [newPost, setNewPost] = useState<string>('');
 
@@ -79,7 +82,8 @@ const Board = ({ user }: BoardProps) => {
   return (
     <div>
       <div>
-        환영합니다, {user.email} 님! <button onClick={() => auth.signOut()}>로그아웃</button>
+        {t('greeting', { email: user.email })}
+        <button onClick={() => auth.signOut()}>{t('logout')}</button>
       </div>
       <h4>새 글 작성</h4>
       <input

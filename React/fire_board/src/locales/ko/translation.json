@@ -1,5 +1,6 @@
 {
   "login": "로그인",
   "logout": "로그아웃",
-  "new_post": "새 글 작성"
+  "new_post": "새 글 작성",
+  "greeting": "환영합니다, {{email}} 님!"
 }

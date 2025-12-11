@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
 import { auth } from './firebase'; // 로컬 설정파일에서 auth 가져오기
 import { onAuthStateChanged, type User } from 'firebase/auth';
-import ResetPassword from './ResetPassword';
-import UpdatePassword from './UpdatePassword';
+import { useTranslation } from 'react-i18next';
 
 import './App.css';
 
+import ResetPassword from './ResetPassword';
+import UpdatePassword from './UpdatePassword';
 import Login from './Login';
 import Board from './Board';
 
 function App() {
   const [user, setUser] = useState<User | null>(null); // 사용자 상태
   const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng: 'en' | 'ko') => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     // onAuthStateChanged: auth 상태 구독. 상태가 바뀌면 호출된다 (로그인, 로그아웃)
@@ -29,6 +35,8 @@ function App() {
 
   return (
     <div className="App">
+      <button onClick={() => changeLanguage('en')}>English</button>
+      <button onClick={() => changeLanguage('ko')}>한국어</button>
       {!user ? (
         <>
           <Login />

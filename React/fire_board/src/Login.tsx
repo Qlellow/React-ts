@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { auth } from './firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { useTranslation } from 'react-i18next';
 
 function Login() {
+  const { t } = useTranslation();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
@@ -35,7 +37,7 @@ function Login() {
 
   return (
     <div>
-      <h2>로그인 / 회원가입</h2>
+      <h2>{t('login')}</h2>
       <input
         type="email"
         value={email}

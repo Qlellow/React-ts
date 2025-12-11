@@ -1,5 +1,6 @@
 {
   "login": "Login",
   "logout": "Logout",
-  "new_post": "Add Post"
+  "new_post": "Add Post",
+  "greeting": "Hello, {{email}}"
 }
